@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir='rtl' lang='ar'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Date Converter</title>
+
+  <link href="css\bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+  <link rel="icon" href="icon.ico">
+
+  <link rel="stylesheet" href="css\dateConverter.css">
+  <link rel="stylesheet" href="css\header.css">
+  <link rel="stylesheet" href="css\variables.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+  <script src='https://www.w3schools.com/lib/w3.js'></script>
+  <script src='js\bootstrap-hijri-datetimepicker.min.js' defer></script>
+  <script src='js\scriptForDateConverter.js' defer></script>
+
+</head>
+
+<body>
+
+  <div class="page">
+    <div w3-include-html='header.htm'></div>
+
+    <!-- Main Form -->
+    <div class='mainBox'>
+
+      <div>
+        <h6>📅 الميلادي &#8592; الهجري</h6>
+        <div>
+          <input id='gpicker' type='text' name='gInputDate' placeholder='الرجاء إدخال التاريخ الميلادي المراد تحويله' required>
+        </div>
+      </div>
+
+      <div>
+        <h6 class='text-right'>📅 الهجري &#8592; الميلادي</h6>
+        <div>
+          <input id='hpicker' type='text' name='hInputDate' placeholder='الرجاء إدخال التاريخ الهجري المراد تحويله' required>
+        </div>
+      </div>
+    </div>
+
+
+    <div w3-include-html='footer.htm'></div>
+  </div>
+
+</body>
+<script>
+  w3.includeHTML();
+</script>
+
+</html>

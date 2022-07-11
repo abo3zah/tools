@@ -1,0 +1,10 @@
+:root {
+    --title-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 25%, #7CB9E8 100%);
+    --title-text-color: white;
+    --title-padding-y: 5px;
+    --title-padding-x: 0px;
+    --dark-background:#212529;
+    --dark-background-hover:#6b6b6b;
+    --header-background:#4b4b4b;
+    --light-background: #f8f9fa;
+}

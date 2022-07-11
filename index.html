@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <title>تحويل الوحدات 🌡️</title>
+
+     <link rel="icon" href="icon.ico">
+
+     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+     <link rel="stylesheet" href="css\header2.css">
+
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+     <script src='https://www.w3schools.com/lib/w3.js'></script>
+</head>
+
+<body ng-app="myConversionApp" ng-controller="myCtrl">
+
+     <div class="grid grid-rows-[auto_1fr_auto] w-full h-full">
+
+          <div ng-include="'header2.htm'"></div>
+
+          <div class="grid grid-cols-1 grid-row-[auto_1fr] justify-center p-3">
+
+               <!-- Unit Type Selection -->
+               <div class="flex w-full items-center justify-center p-3">
+                    <select class="w-[600px] max-w-full rounded text-center hover:bg-gray-200 font-bold" ng-change="loadUnits()" ng-model="unitType" ng-options="x for x in unitTypes"></select>
+               </div>
+
+
+               <!--  -->
+               <div class="flex flex-row justify-center flex-wrap p-4 w-full gap-4">
+
+                    <div class="grid grid-cols-1 content-start p-1 border rounded border-black bg-slate-50 w-full max-w-[48%] min-w-[300px] gap-1">
+                         <div class="text-center bg-stone-800 text-white p-1 rounded">
+                              <b>من</b>
+                         </div>
+
+                         <div class="grid grid-cols-2 gap-1">
+                              <input class="rounded p-1 text-center hover:bg-gray-200" type="number" ng-model="valueFrom" id="unit_from">
+                              <select class="rounded p-1 text-center hover:bg-gray-200" id="unitFrom" ng-change="fetchOtherUnits()" ng-model="unitFrom" ng-options="x for x in units"></select>
+                         </div>
+                    </div>
+
+
+                    <div id="result_div" class="grid grid-cols-1 p-1 border rounded border-black bg-slate-50 w-full max-w-[48%] min-w-[300px] content-start">
+
+                         <div class="text-center align-middle items-center bg-stone-800 text-white p-1 rounded">
+                              <b>إلى</b>
+                         </div>
+
+                         <div class="grid grid-cols-1 content-start p-1" ng-repeat="(y,x) in otherUnits">
+                              <span class="p-1 rounded border border-black bg-white"><b>{{x['name']}}</b> : {{ calculate(x) | number}} {{x["symbol"]}}</span>
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
+
+
+          <div ng-include="'footer.htm'"></div>
+     </div>
+</body>
+
+<script type="module" src="js\unitConverter.js" defer></script>
+
+</html>

@@ -1,0 +1,87 @@
+html{
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.dropdown-menu{
+    display: none;
+    top: 2rem;
+}
+
+button:hover ~  .dropdown-menu,
+header .dropdown-menu:hover{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+footer div {
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    padding: 0.5rem 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: large;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr;
+}
+
+.input-group span {
+    background: #667db6;
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    margin: .2rem 0;
+    margin-right: .5rem;
+    text-align: right;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    padding: 0.1rem;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid black;
+}
+
+.input-group input {
+    margin: .2rem 0rem .2rem .2rem;
+    padding: 0rem .2rem;
+    border: 1px solid black;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.radio-group-box {
+    align-items: center;
+}
+
+.radio-group{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    gap: .5rem;
+    padding: 0 .3rem;
+    margin: 0;
+    height: 1.45rem;
+}
+
+.radio-group div{
+    display: flex;
+    align-items: center;
+}
+
+.radio-group div:not(.radio-group div:last-child)::after{
+    content: "\00A0";
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    margin: 0rem .5rem 0rem 0rem;
+}

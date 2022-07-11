@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html dir="rtl" lang='ar'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <title>World Map 🌏</title>
+
+  <link rel="icon" href="icon.ico">
+
+  <link rel="stylesheet" href="css\header.css">
+  <link rel="stylesheet" href="css\worldMap.css">
+  <link rel="stylesheet" href="css\variables.css">
+
+  
+  <script src='https://www.w3schools.com/lib/w3.js'></script>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <div w3-include-html='header.htm'></div>
+
+    <!-- Main -->
+    <div id="SVGContainer"></div>
+
+    <div w3-include-html='footer.htm'></div>
+  </div>
+
+
+</body>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src='js\worldMap.js'></script>
+<script>
+  w3.includeHTML();
+</script>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html dir='rtl' lang='ar'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <title>Country Information</title>
+  <link rel="icon" href="icon.ico">
+
+  <link rel="stylesheet" href="css\variables.css">
+  <link rel="stylesheet" href="css\header.css">
+  <link rel="stylesheet" href="css\countryCode.css">
+  
+  <script src='https://www.w3schools.com/lib/w3.js'></script>
+  <script src="https://d3js.org/d3.v6.min.js" defer></script>
+  <script src='js\countryCode.js' defer></script>
+</head>
+
+<body>
+
+  <div class="page">
+    <div w3-include-html='header.htm'></div>
+    
+    <!-- Main -->
+    <div>
+      <div id="main"></div>
+      <div class="dialog hidden"></div>
+    </div>
+
+    <div w3-include-html='footer.htm'></div>
+  </div>
+
+</body>
+<script>
+  w3.includeHTML();
+</script>
+
+</html>

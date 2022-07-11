@@ -1,0 +1,200 @@
+*:not(footer span):not(text):not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    font-size: large;
+}
+
+button{
+    cursor: pointer;
+}
+
+html{
+    height: 100%;
+}
+
+body {
+    background-size: 10px 10px;
+    background-repeat: repeat;
+    height: 100%;
+}
+
+.page{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.topBar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--title-background);
+    padding: 0.5rem 0;
+}
+
+.linkBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.icon {
+    align-items: center;
+    color: var(--title-text-color);
+    flex-grow: 0;
+    padding-left: 0.2rem;
+    font-weight: bold;
+}
+
+.dropdown{
+    position: relative;
+    padding: 0 0.2rem;
+}
+
+.dropdown > button:first-child {
+    background-color: transparent;
+    text-shadow: 1px 1px 2px black;
+    color: whitesmoke;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    position: relative;
+    top:0;
+}
+
+body{
+    margin: 0px;
+}
+
+.dropdown > button:first-child::after {
+    content: "▼";
+    color: white;
+    font-size: 0.5rem;
+}
+
+.dropdown-menu{
+    display: none;
+    background-color:whitesmoke;
+    position: absolute;
+    top: 1.4rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 200px;
+    z-index: 1;
+}
+
+.dropdown-menu ul{
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-item{
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dropdown-item:hover{
+    text-decoration: none;
+    color: white;
+    background-color: hsl(0, 0%, 30%);
+}
+
+.dropdown > button:first-child:hover {
+    background-color: var(--dark-background-hover);
+}
+
+.dropdown > button:first-child:hover ~  .dropdown-menu,
+header .dropdown-menu:hover{
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 1;
+}
+
+footer {
+    background: var(--title-background);
+}
+
+footer div {
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    padding: 0.5rem 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: large;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr;
+}
+
+.input-group span {
+    background: #667db6;
+    background: -webkit-linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+    margin: .2rem 0;
+    margin-right: .5rem;
+    text-align: right;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    padding: 0.1rem;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid black;
+}
+
+.input-group input {
+    margin: .2rem 0rem .2rem .2rem;
+    padding: 0rem .2rem;
+    border: 1px solid black;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.radio-group-box {
+    align-items: center;
+}
+
+.radio-group{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px 0 0 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    gap: .5rem;
+    padding: 0 .3rem;
+    margin: 0;
+    height: 1.45rem;
+}
+
+.radio-group div{
+    display: flex;
+    align-items: center;
+}
+
+.radio-group div:not(.radio-group div:last-child)::after{
+    content: "\00A0";
+    width: 2px;
+    height: 100%;
+    background-color: black;
+    margin: 0rem .5rem 0rem 0rem;
+}
+
+.btn{
+    background-color: cornflowerblue;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: rgb(153, 182, 238);
+    color: black;
+}

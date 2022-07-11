@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html dir='rtl' lang='ar'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="icon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src='https://www.w3schools.com/lib/w3.js'></script>
+    <title>Scatter Plot Using D3</title>
+    <style>
+        * {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        a:hover {
+            background-color: hsl(0, 0%, 30%);
+        }
+
+        input:invalid {
+            background-color: brown;
+            color: white;
+        }
+
+        #drawingArea text {
+            fill: black;
+        }
+
+        #InputGroup label{
+            background-color: hsl(200,100%,40%);
+            color:hsl(0,0%,100%)
+        }
+
+        #dropDownGroup label, #filePathDiv label{
+            background-color: hsl(0,0%,40%);
+            color:hsl(0,0%,100%)
+        }
+
+        #filePathDiv{
+            padding:0px 16px 0px 16px;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr 2fr);
+            grid-gap: 2px;
+        }
+
+        #dropDownGroup{
+            padding:0px 16px 0px 16px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 2px;
+        }
+
+        #InputGroup{
+            padding:0px 16px 0px 16px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 2px;
+        }
+
+        #drawingArea{
+            padding:0px 16px 0px 16px;
+        }
+    </style>
+</head>
+<body>
+    <div w3-include-html='header.htm'></div>
+
+    <div w3-include-html='nav.htm'></div>
+
+    <br>
+
+    <div id="filePathDiv">
+        <label for="filePath" class="form-control">File Path</label>
+        <input type="text" name="filePath" id="filePath" class="form-control" value="https://raw.githubusercontent.com/curran/data/gh-pages/all/iris_iris.csv" onchange="loadingFile()">
+    </div>
+
+    <hr>
+
+    <div id="InputGroup">
+
+        <label for="title" class="form-control">Title</label>
+        <input type="text" name="title" id="title" class="form-control" onchange="draw()">
+        
+        <label for="drawingWidth" class="form-control">Drawing Width</label>
+        <input type="number" name="drawingWidth" min=100 id="drawingWidth" class="form-control" onchange="draw()">
+
+        <label for="drawingHeight" class="form-control">Drawing Height</label>
+        <input type="number" min=100 name="drawingHeight" id="drawingHeight" class="form-control" value=450 onchange="draw()">
+
+        <label for="xAxisScale" class="form-control">xAxis Scale</label>
+        <select name="xAxisScale" id="xAxisScale" class="form-control" onchange="draw()">
+            <option value="scaleLinear">Linear</option>
+            <option value="scaleLog">Log</option>
+            <option value="scalePow">Power</option>
+            <option value="scaleSqrt">Square Root</option>
+            <option value="scaleSymlog">Symbol Log</option>
+            <option value="scaleRadial">Radial</option>
+            <option value="scaleTime">Time</option>
+        </select>
+
+        <label for="yAxisScale" class="form-control">yAxis Scale</label>
+        <select name="yAxisScale" id="yAxisScale" class="form-control" onchange="draw()">
+            <option value="scaleLinear">Linear</option>
+            <option value="scaleLog">Log</option>
+            <option value="scalePow">Power</option>
+            <option value="scaleSqrt">Square Root</option>
+            <option value="scaleSymlog">Symbol Log</option>
+            <option value="scaleRadial">Radial</option>
+        </select>
+
+        <label for="xAxisTickFormat" class="form-control">xAxis Tick Format</label>
+        <select name="xAxisTickFormat" id="xAxisTickFormat" class="form-control" onchange="draw()">
+            <option value="null">No Format</option>
+            <option value="=.0f">Year</option>
+            <option value="=~s">Long Numbers</option>
+            <option value="=$~s">Accounting</option>
+            <option value="=.1%">Percentage</option>
+            <option value="=~e">Scientific</option>
+        </select>
+
+        <label for="yAxisTickFormat" class="form-control">yAxis Tick Format</label>
+        <select name="yAxisTickFormat" id="yAxisTickFormat" class="form-control" onchange="draw()">
+            <option value="null">No Format</option>
+            <option value="=.0f">Year</option>
+            <option value="=~s">Long Numbers</option>
+            <option value="=$~s">Accounting</option>
+            <option value="=.1%">Percentage</option>
+            <option value="=~e">Scientific</option>
+        </select>
+
+        <label for="circleRadius" class="form-control">Circle Radius</label>
+        <input type="number" name="circleRadius" min=0 id="circleRadius" class="form-control" value=5 onchange="draw()">
+
+        <label for="circleOpacity" class="form-control">Circle Opacity</label>
+        <input type="number" name="circleOpacity" id="circleOpacity" class="form-control" min=0 max=1 step=0.05 value=0.5 onchange="draw()">
+
+        <label for="circleColor" class="form-control">Circle Color</label>
+        <input type="color" name="circleColor" id="circleColor" class="form-control" onchange="draw()">
+
+        <label for="legendLocation" class="form-control">Legend Location</label>
+        <select name="legendLocation" id="legendLocation" class="form-control" onchange="draw()">
+            <option value="topRight">Top Right</option>
+            <option value="bottomRight">Bottom Right</option>
+        </select>
+
+        <label for="svgBackgroundColor" class="form-control">Background Color</label>
+        <input type="color" name="svgBackgroundColor" id="svgBackgroundColor" class="form-control" onchange="draw()" value="#f2f2f2">
+    </div>
+
+    <hr>
+
+    <div id="dropDownGroup"></div>
+
+    <hr>
+    <div id="drawingArea"></div>
+
+    <br> 
+    <br>
+    
+    <div w3-include-html='footer.htm'></div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="js\d3DrawWithConfiguration.js"></script>
+    <script src="js\scatterD3IRISScript.js"></script>
+    <script>
+        w3.includeHTML();
+    </script>
+</body>
+</html>
