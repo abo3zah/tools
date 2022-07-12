@@ -1,3 +1,12 @@
+var map = [
+    "&\#1632;", "&\#1633;", "&\#1634;", "&\#1635;", "&\#1636;",
+    "&\#1637;", "&\#1638;", "&\#1639;", "&\#1640;", "&\#1641;"
+]
+
+var replaceDigits = function (str) {
+    return str.replace(/\d(?=[^<>]*(<|$))/g, function ($0) {return map[$0]});
+}
+
 function printDate(x, result, target) {
     let end = new Date()
     let diffInDays = parseInt((end.getTime() - x) / 86400000);
@@ -21,15 +30,6 @@ function printDate(x, result, target) {
     months = parseInt(((diffInDays / 354) - years) * 12);
     days = diffInDays - (years * 354) - (months * 30);
     $(target).append(replaceDigits("<p><b>الفرق بالهجري إلى هذه اللحظة:</b> " + years + " سنة و  " + months + " شهر و  " + days + " يوم</p>"));
-}
-
-var map = [
-    "&\#1632;", "&\#1633;", "&\#1634;", "&\#1635;", "&\#1636;",
-    "&\#1637;", "&\#1638;", "&\#1639;", "&\#1640;", "&\#1641;"
-]
-
-var replaceDigits = function (str) {
-    return str.replace(/\d(?=[^<>]*(<|$))/g, function ($0) {return map[$0]});
 }
 
 $(function () {
@@ -59,7 +59,7 @@ $("#hpicker").on('dp.change', function (arg) {
     };
     let date = arg.date;
     let result = "<b>التاريخ الميلادي : </b>" + date.format("dddd,     D / MMMM (M) / YYYY") + " م"
-    printDate(date.format('x'), result, ".mainBox > div:nth-child(2)");
+    printDate(date.format('x'), result, "#hDiv");
 });
 
 $("#gpicker").on('dp.change', function (arg) {
@@ -69,102 +69,131 @@ $("#gpicker").on('dp.change', function (arg) {
     };
     let date = arg.date;
     let result = "<b>التاريخ الهجري : </b>" + date.format("dddd, iD / iMMMM (iM) / iYYYY") + " هـ"
-    printDate(date.format('x'), result, ".mainBox > div:first-child");
+    printDate(date.format('x'), result, "#gDiv");
 });
 
+// function setup(){
+//     noCanvas();
+//     noLoop();
 
-// function intPart(floatNum) {
-//     if (floatNum < -0.0000001) {
-//         return Math.ceil(floatNum - 0.0000001)
-//     }
-//     return Math.floor(floatNum + 0.0000001)
+//     luxon.Settings.defaultOutputCalendar = 'islamic'
+
+//     updateInputWithDate(luxon.DateTime.local(1989,3,7));
 // }
 
-// function weekDay(wdn) {
-//     if (wdn == 0) {
-//         return "الأثنين"
+// function showYearDateGeorgian(selectedYear = new Date().getFullYear()){
+//     select('#gDateSelectionDiv').html('').removeClass('hidden').addClass('grid')
+
+//     createDiv(`
+//         <span class='font-bold cursor-pointer hover:text-white hover:bg-gray-800 px-1 rounded hover:underline' onclick="showYearDateGeorgian(${selectedYear-13})"><</span>
+//         <span class='font-bold flex-grow text-center'>${selectedYear-6} - ${selectedYear+6}</span>
+//         <span class='font-bold cursor-pointer hover:text-white hover:bg-gray-800 px-1 rounded hover:underline' onclick="showYearDateGeorgian(${selectedYear+13})">></span>
+//     `).parent('gDateSelectionDiv').class('flex gap-3')
+
+//     createDiv(`
+//         <div class='flex-grow grid grid-cols-4 gap-3'>
+
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-6})">${selectedYear-6}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-5})">${selectedYear-5}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-4})">${selectedYear-4}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-3})">${selectedYear-3}</span>
+
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-2})">${selectedYear-2}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear-1})">${selectedYear-1}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear})">${selectedYear}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear+1})">${selectedYear+1}</span>
+
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear+2})">${selectedYear+2}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear+3})">${selectedYear+3}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear+5})">${selectedYear+5}</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded' onclick="showMonthDateGeorgian(${selectedYear+6})">${selectedYear+6}</span>
+            
+//             <span class='text-center cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-3 rounded col-span-full' onclick="updateInputWithDate(luxon.DateTime.now())">اليوم</span>
+//         </div>
+//     `).parent('gDateSelectionDiv').class('grid gap-2')
+// }
+
+// function showMonthDateGeorgian(selectedYear){
+//     select('#gDateSelectionDiv').html('').removeClass('hidden').addClass('grid')
+
+//     createDiv(`
+//         <span class='font-bold'><</span>
+//         <span class='font-bold flex-grow text-center cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white rounded' onclick='showYearDateGeorgian(${selectedYear})'>${selectedYear}</span>
+//         <span class='font-bold'>></span>
+//     `).parent('gDateSelectionDiv').class('flex gap-3')
+
+//     createDiv(`
+//         <div class='flex-grow grid grid-cols-4 gap-3'>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 1)">January</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 2)">February</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 3)">March</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 4)">April</span>
+        
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 5)">May</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 6)">June</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 7)">July</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 8)">August</span>
+        
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 9)">September</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 10)">October</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 11)">November</span>
+//             <span class='cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded text-center' onclick="showDayDateGeorgian(${selectedYear}, 12)">December</span>
+
+//             <span class='text-center cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded col-span-full' onclick="updateInputWithDate(luxon.DateTime.now())">اليوم</span>
+//         </div>
+//     `).parent('gDateSelectionDiv').class('grid gap-2')
+// }
+
+// function showDayDateGeorgian(selectedYear, selectedMonth){
+//     select('#gDateSelectionDiv').html('').removeClass('hidden').addClass('grid')
+
+//     createDiv(`
+//         <span class='font-bold'><</span>
+//         <span class='font-bold flex-grow text-center cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white rounded' onclick='showMonthDateGeorgian(${selectedYear})'>${selectedYear} - ${selectedMonth}</span>
+//         <span class='font-bold'>></span>
+//     `).parent('gDateSelectionDiv').class('flex gap-3')
+
+//     date = luxon.DateTime.fromObject({year:selectedYear, month:selectedMonth})
+//     daysText = ''
+//     for(let i = 1-date.weekday; i<= date.daysInMonth; i++){
+//         if(i < 1){
+//             daysText += `<span></span>`;
+//         } else {
+//             daysText += `<span class='text-center cursor-pointer hover:underline select-none hover:bg-gray-600 p-1 hover:text-white rounded' onclick="updateInputWithDate(luxon.DateTime.fromObject({year:${selectedYear},month:${selectedMonth},day:${date.day}}))">${date.day}</span>`;
+//             date = date.plus({ days:1})
+//         }
 //     }
-//     if (wdn == 1) {
-//         return "الثلاثاء"
+
+//     createDiv(`
+//         <div dir="rtl" class='flex-grow grid grid-cols-7 gap-3'>
+//             <span class='select-none text-center'>ح</span>
+//             <span class='select-none text-center'>ث</span>
+//             <span class='select-none text-center'>ث</span>
+//             <span class='select-none text-center'>ر</span>
+//             <span class='select-none text-center'>خ</span>
+//             <span class='select-none text-center'>ج</span>
+//             <span class='select-none text-center'>س</span>
+
+//             ${daysText}
+
+//             <span class='text-center cursor-pointer hover:underline select-none hover:bg-gray-600 hover:text-white p-1 rounded col-span-full' onclick="updateInputWithDate(luxon.DateTime.now())">اليوم</span>
+//         </div>
+//     `).parent('gDateSelectionDiv').class('grid gap-2')
+// }
+
+// function updateInputWithDate(date){
+
+//     select('#gDateSelectionDiv').html('').removeClass('grid').addClass('hidden');
+
+//     if (selectAll('#gDiv p').length > 0){
+//         selectAll('#gDiv p')[0].remove();
 //     }
-//     if (wdn == 2) {
-//         return "الأربعاء"
-//     }
-//     if (wdn == 3) {
-//         return "الخميس"
-//     }
-//     if (wdn == 4) {
-//         return "الجمعة"
-//     }
-//     if (wdn == 5) {
-//         return "السبت"
-//     }
-//     if (wdn == 6) {
-//         return "الأحد"
-//     }
-//     return ""
+
+//     select('#gpicker').value(`${date.toISODate()}`);
+//     createP(`<b>التاريخ الهجري:</b>  ${date.setLocale("ar").reconfigure({numberingSystem:'arab'}).toLocaleString(luxon.DateTime.DATE_FULL)}
+//             <b>عدد الأيام إلى هذه اللحظة:</b> ${nfc(luxon.DateTime.local().startOf('day').diff(date, 'days').toObject()['days'],0)} يوم
+//             <b>عدد السنوات إلى هذه اللحظة:</b> ${nfc(luxon.DateTime.local().startOf('day').diff(date, 'years').toObject()['years'],0)} سنة`).parent('#gDiv').class('whitespace-pre-line')
 
 // }
 
-// function chrToIsl(arg) {
-//     d = parseInt(arg.CDay.value)
-//     m = parseInt(arg.CMonth.value)
-//     y = parseInt(arg.CYear.value)
-//     if ((y > 1582) || ((y == 1582) && (m > 10)) || ((y == 1582) && (m == 10) && (d > 14))) {
-//         jd = intPart((1461 * (y + 4800 + intPart((m - 14) / 12))) / 4) + intPart((367 * (m - 2 - 12 * (intPart((m - 14) / 12)))) / 12) -
-//             intPart((3 * (intPart((y + 4900 + intPart((m - 14) / 12)) / 100))) / 4) + d - 32075
-//     } else {
-//         jd = 367 * y - intPart((7 * (y + 5001 + intPart((m - 9) / 7))) / 4) + intPart((275 * m) / 9) + d + 1729777
-//     }
-//     arg.JD.value = jd
-//     arg.wd.value = weekDay(jd % 7)
-//     l = jd - 1948440 + 10632
-//     n = intPart((l - 1) / 10631)
-//     l = l - 10631 * n + 354
-//     j = (intPart((10985 - l) / 5316)) * (intPart((50 * l) / 17719)) + (intPart(l / 5670)) * (intPart((43 * l) / 15238))
-//     l = l - (intPart((30 - j) / 15)) * (intPart((17719 * j) / 50)) - (intPart(j / 16)) * (intPart((15238 * j) / 43)) + 29
-//     m = intPart((24 * l) / 709)
-//     d = l - intPart((709 * m) / 24)
-//     y = 30 * n + j - 30
 
-//     arg.HDay.value = d
-//     arg.HMonth.value = m
-//     arg.HYear.value = y
-// }
-
-// function islToChr(arg) {
-//     d = parseInt(arg.HDay.value)
-//     m = parseInt(arg.HMonth.value)
-//     y = parseInt(arg.HYear.value)
-//     jd = intPart((11 * y + 3) / 30) + 354 * y + 30 * m - intPart((m - 1) / 2) + d + 1948440 - 385
-//     arg.JD.value = jd
-//     arg.wd.value = weekDay(jd % 7)
-//     if (jd > 2299160) {
-//         l = jd + 68569
-//         n = intPart((4 * l) / 146097)
-//         l = l - intPart((146097 * n + 3) / 4)
-//         i = intPart((4000 * (l + 1)) / 1461001)
-//         l = l - intPart((1461 * i) / 4) + 31
-//         j = intPart((80 * l) / 2447)
-//         d = l - intPart((2447 * j) / 80)
-//         l = intPart(j / 11)
-//         m = j + 2 - 12 * l
-//         y = 100 * (n - 49) + i + l
-//     } else {
-//         j = jd + 1402
-//         k = intPart((j - 1) / 1461)
-//         l = j - 1461 * k
-//         n = intPart((l - 1) / 365) - intPart(l / 1461)
-//         i = l - 365 * n + 30
-//         j = intPart((80 * i) / 2447)
-//         d = i - intPart((2447 * j) / 80)
-//         i = intPart(j / 11)
-//         m = j + 2 - 12 * i
-//         y = 4 * k + n + i - 4716
-//     }
-
-//     arg.CDay.value = d
-//     arg.CMonth.value = m
-//     arg.CYear.value = y
-
-// }
