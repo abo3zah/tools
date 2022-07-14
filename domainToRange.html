@@ -8,9 +8,9 @@
   <title>المجال و النطاق</title>
   <link rel='icon' href='icon.ico'>
 
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="css\header.css">
-  <link rel="stylesheet" href="css\variables.css">
+  <link rel="stylesheet" href="css\header2.css">
   <link rel="stylesheet" href="css\domainToRange.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
@@ -23,63 +23,69 @@
 
 <body>
 
-  <div class="page">
-    <div w3-include-html='header.htm'></div>
+  <div class="grid grid-rows-[auto_1fr_auto] w-full h-full">
+    <div w3-include-html='header2.htm'></div>
 
-    <div class="mainBox">
+    <div class="p-6 grid justify-center content-start auto-cols-fr gap-3">
 
-      <!-- Main Form -->
-      <div class="two-cols">
+      <!-- Top User Entry -->
+      <div class="flex flex-wrap justify-center gap-4">
 
         <!-- configuration -->
 
-        <div class="container">
-          <h5>المجال</h5>
-          <div class="card-body">
-            <div class='input-group'>
-              <span>الأدنى</span>
-              <input tabindex="1" id='rangeLow' type='number' name='rangeLow' value='0' onchange='calc()'
+        <div class="grid items-stretch border border-black rounded-md p-1 auto-cols-fr w-full">
+          <h5 class="w-full bg-gradient-to-r from-teal-400 to-teal-900 text-stone-50 text-center rounded py-1 font-bold">المجال</h5>
+
+          <div class="w-[clamp(300px+100%+49%)]">
+
+            <div class='grid grid-cols-[1fr_6fr] gap-3'>
+              <span class="bg-gray-500 my-1 mr-2 text-right text-white px-1 rounded border border-black align-middle font-bold grid content-center">الأدنى</span>
+              <input class="my-1 ml-1 border border-black rounded" tabindex="1" id='rangeLow' type='number' name='rangeLow' value='0' onchange='calc()'
                 placeholder='الرقم الأدنى' title="الأدنى" required>
             </div>
-            <div class='input-group'>
-              <span>الأعلى</span>
-              <input tabindex="2" id='rangeHigh' type='number' name='rangeHigh' value='100' onchange='calc()'
+
+            <div class='grid grid-cols-[1fr_6fr] gap-3'>
+              <span class="bg-gray-500 my-1 mr-2 text-right text-white px-1 rounded border border-black align-middle font-bold grid content-center">الأعلى</span>
+              <input class="my-1 ml-1 border border-black rounded" tabindex="2" id='rangeHigh' type='number' name='rangeHigh' value='100' onchange='calc()'
                 placeholder='الرقم الأعلى' title="الأعلى" required>
             </div>
           </div>
         </div>
 
-        <div class="container">
-          <h5>النطاق</h5>
-          <div class="card-body">
-            <div class='input-group'>
-              <span>الأدنى</span>
-              <input tabindex="3" id='domainLow' type='number' name='domainLow' value='4' onchange='calc()'
+        <div class="grid content-start border border-black rounded-md p-1 auto-cols-fr w-full">
+          <h5 class="w-full bg-gradient-to-r from-teal-400 to-teal-900 text-stone-50 text-center rounded py-1 font-bold">النطاق</h5>
+
+          <div class="grid">
+
+            <div class='grid grid-cols-[1fr_6fr] gap-3'>
+              <span class="bg-gray-500 my-1 mr-2 text-right text-white px-1 rounded border border-black align-middle font-bold grid content-center">الأدنى</span>
+              <input class="my-1 ml-1 border border-black rounded" tabindex="3" id='domainLow' type='number' name='domainLow' value='4' onchange='calc()'
                 placeholder='الرقم الأدنى' title="الأدنى" required>
             </div>
-            <div class='input-group'>
-              <span>الأعلى</span>
-              <input tabindex="4" class='form-control text-primary' id='domainHigh' type='number' name='domainHigh'
+
+            <div class='grid grid-cols-[1fr_6fr] gap-3'>
+              <span class="bg-gray-500 my-1 mr-2 text-right text-white px-1 rounded border border-black align-middle font-bold grid content-center">الأعلى</span>
+              <input class="my-1 ml-1 border border-black rounded" tabindex="4" class='form-control text-primary' id='domainHigh' type='number' name='domainHigh'
                 value='20' onchange='calc()' placeholder='الرقم الأعلى' title="الأعلى" required>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- User Entry -->
-      <div class="container">
-          <h5>رقم من المجال > رقم النطاق</h5>
-          <div class='input-group'>
-            <span>الرقم المراد تحويله&nbsp;</span>
-            <input tabindex="5" class='text-primary' id='inputNumber' type='number'
+      <!-- Bottom User Entry -->
+      <div class="grid content-start border border-black rounded-md p-1 auto-cols-fr w-full">
+          <h5 class="w-full bg-gradient-to-r from-teal-400 to-teal-900 text-stone-50 text-center rounded py-1 font-bold">رقم من المجال > رقم النطاق</h5>
+          <div class='grid grid-cols-[1fr_6fr] gap-3'>
+            <span class="bg-gray-500 my-1 mr-2 text-right text-white px-1 rounded border border-black align-middle font-bold grid content-center">الرقم المراد تحويله&nbsp;</span>
+            <input class="my-1 ml-1 border border-black rounded" tabindex="5" class='text-primary' id='inputNumber' type='number'
               name='inputNumber' value='25' onchange='calc()' placeholder='' title="الرقم المراد تحويله" required>
           </div>
       </div>
 
       <!-- result -->
-      <div class="container">
-        <h5 class='text-center text-white'>النتيجة</h5>
-        <p id="result"></p>
+      <div class="grid content-start border border-black rounded-md p-1 auto-cols-fr w-full gap-1">
+        <h5 class="w-full bg-gradient-to-r from-teal-400 to-teal-900 text-stone-50 text-center rounded py-1 font-bold">النتيجة</h5>
+        <p class="border border-black text-center bg-teal-100 rounded font-bold" id="result"></p>
       </div>
 
     </div>
