@@ -8,9 +8,10 @@
     <title>التقويم</title>
     <link rel="icon" href="icon.ico">
 
-    <link rel="stylesheet" href="css\variables.css">
-    <link rel="stylesheet" href="css\header.css">
-    <link rel="stylesheet" href="css\calendar.css">
+    <!--<link rel="stylesheet" href="css\calendar.css">-->
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="css\header2.css">
 
     <script src='https://www.w3schools.com/lib/w3.js'></script>
     <script src="https://d3js.org/d3.v6.min.js" defer></script>
@@ -22,148 +23,154 @@
 
 <body>
 
-    <div class="page">
-        <div w3-include-html='header.htm'></div>
+    <div class="grid grid-rows-[auto_1fr_auto] w-full h-full">
+        <div w3-include-html='header2.htm'></div>
 
         <!-- Main -->
-        <div class="mainBox">
-            <h2>تقويم سنة <input onchange="mainScript()" type="number" id="selectedYear" class ="inputYear" value="2022"></input></h2>
-            <h2 id="hijriYear">()</h2>
-            <div class="year">
+        <div class="w-full h-full grid grid-col-[1fr] items-center py-3 px-6">
+            
+            <div class="text-center text-xl">
+                تقويم سنة 
+                <input class="form-input bg-orange-300 text-center rounded m-0 p-0 font-bold" onchange="mainScript()" type="number" id="selectedYear" class ="inputYear" value="2022" />
+            </div>
+        
+            <h2 class="text-center text-xl" id="hijriYear">()</h2>
+        
+            <div class="w-full h-full grid md:grid-cols-2 lg:grid-cols-4 gap-6 justify-center items-stretch">
 
-                <table class="month" data-month="1">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200 " data-month="1">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">يناير</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">يناير</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="2">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="2">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">فبراير</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">فبراير</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="3">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="3">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">مارس</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">مارس</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="4">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="4">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">أبريل</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">أبريل</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="5">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="5">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">مايو</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">مايو</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="6">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="6">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">يونيو</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">يونيو</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="7">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="7">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">يوليو</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">يوليو</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="8">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="8">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">أغسطس</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">أغسطس</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="9">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="9">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">سبتمبر</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">سبتمبر</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="10">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="10">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">أوكتوبر</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">أوكتوبر</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="11">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="11">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">نوفمبر</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">نوفمبر</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <table class="month" data-month="12">
+                <table class="table-fixed border-separate w-full border border-black rounded-md p-1 bg-slate-200" data-month="12">
                     <thead>
-                        <tr class="monthHeader">
-                            <th colspan="3">ديسمبر</th>
-                            <th colspan="4"></th>
+                        <tr class="text-s">
+                            <th class="text-right px-2" colspan="3">ديسمبر</th>
+                            <th class="text-left px-2" colspan="4"></th>
                         </tr>
                         <tr class="headerforDayName"></tr>
                     </thead>
                     <tbody></tbody>
                 </table>
 
-                <div class="legend"></div>
+                <div id="legend" class="col-span-full w-full h-full flex justify-center items-center text-center py-1 flex-wrap gap-2"></div>
             </div>
         </div>
 

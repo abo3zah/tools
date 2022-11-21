@@ -51,7 +51,7 @@ var replaceDigits = function (str) {
 
 const weekday = ["أ", "ث", "ث", "ر", "خ", "ج", "س"];
 const MonthName = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أوكتوبر", "نوفمبر", "ديسمبر"];
-const hColors = ['#32CD32', '#0000CD', '#FFA500'];
+const hColors = ['#32CD32', '#06b6d4', '#FFA500'];
 const map = [
     "&#1632;", "&#1633;", "&#1634;", "&#1635;", "&#1636;",
     "&#1637;", "&#1638;", "&#1639;", "&#1640;", "&#1641;"
@@ -75,7 +75,7 @@ function mainScript(){
             .data(weekday)
             .enter()
             .append('th')
-            .attr('class', 'dayName')
+            .attr('class', 'text-center text-white bg-sky-600')
             .text(d => d)
             
 
@@ -96,13 +96,15 @@ function mainScript(){
                     return ' '
                 };
 
-                classes = 'day ';
+                classes = 'relative text-sm pr-1 border border-black ';
 
-                d.day() > 4 ? classes += "weekEnd " : classes += 'weekDay ';
+                
+                d.day() > 4 ? classes += "bg-gray-600 text-white " : classes += 'bg-slate-50 ';
                 d.day() == 0 ? classes += "sundays " : null;
                 d.date() == 1 ? classes += "startOfMonth " : null;
+                
+                d.format('iMM') == 9 ? classes += "bg-green-200 text-black font-bold " : null;
 
-                d.format('iMM') == 9 ? classes += "ramadan " : null;
                 return classes;
             })
             .attr('style', (d) => {
@@ -141,12 +143,12 @@ function mainScript(){
                 };
                 let text = '';
 
-                text = '<span style="color:' + hColors[hMonths.indexOf(d.format('iMMM'))] + '">' + replaceDigits(String(d.iDate())) + '</span>';
+                text = '<span style="color:' + hColors[hMonths.indexOf(d.format('iMMM'))] + '" class=" absolute text-sm left-1 font-bold">' + replaceDigits(String(d.iDate())) + '</span>';
 
                 return text;
             })
 
-        d3.selectAll('[data-month="' + (i + 1) + '"] .monthHeader th:nth-child(2)')
+        d3.selectAll('[data-month="' + (i + 1) + '"] [colspan="4"]')
             .html((d) => {
                 let text = '';
                 for (let j = 0; j < hMonths.length; j++) {
@@ -164,17 +166,18 @@ function mainScript(){
     vacationDetails.push({
         'key': 'رمضان',
         'value': [{
-            style: 'background-color:rgb(181, 224, 181);',
+            style: 'background-color:rgb(187 247 208);font-weight: 700;',
         }]
     })
 
-    legend = d3.select('.legend')
+    legend = d3.select('#legend')
         .selectAll('div')
         .data(vacationDetails)
         .enter()
         .append('div')
         .html((d) => d.key)
         .attr('style', (d) => d.value[0].style + ';border:1px solid black')
+        .attr('class', " flex-grow")
 
 }
 
