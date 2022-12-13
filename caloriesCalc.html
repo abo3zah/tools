@@ -8,25 +8,23 @@
   <title>حاسب السعرات الحرارية</title>
   <link rel="icon" href="icon.ico">
 
-  <link rel="stylesheet" href="css\variables.css">
-  <link rel="stylesheet" href="css\caloriesCalc.css">
-  <link rel="stylesheet" href="css\header.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="stylesheet" href="css\header2.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
   <script src='https://www.w3schools.com/lib/w3.js'></script>
   <script src='js\scriptForCaloriesCalc.js' defer></script>
 
-
 </head>
 
 <body>
 
-  <div class="page">
+  <div class="grid grid-rows-[auto_1fr_auto] w-full h-full">
 
-    <div w3-include-html='header.htm'></div>
+    <div w3-include-html='header2.htm'></div>
 
     <!-- Main Form -->
-    <div class='mainBox'>
+    <div class='grid grid-cols-1 justify-center content-start border border-black rounded bg-slate-200 p-2 m-6'>
       <div class='input-group'>
         <span>الوزن (كجم)</span>
         <input tabindex="1" id='weight' type='number' name='weight' placeholder='الوزن (كجم)' min='30' value='70'
@@ -45,16 +43,16 @@
         <span>الجنس</span>
         <div class='radio-group'>
           <div>
-            <input type='radio' class='custom-control-input' id='male' name='sex' value='male' checked>
-            <label class='custom-control-label' for='male'>ذكر</label>
+            <input type='radio' id='male' name='sex' value='male' checked>
+            <label for='male'>ذكر</label>
           </div>
           <div>
-            <input type='radio' class='custom-control-input' id='female' name='sex' value='female'>
-            <label class='custom-control-label' for='female'>أنثى</label>
+            <input type='radio' id='female' name='sex' value='female'>
+            <label for='female'>أنثى</label>
           </div>
         </div>
       </div>
-      <button type='button' class='btn btn-primary mt-3 form-control'>حساب</button>
+      <button type='button' class='bg-blue-400 rounded border border-black text-white m-2 p-2 hover:brightness-110'>حساب</button>
       <p id='BMI'><b>معادلة مؤشر كتلة الجسم</b>:</p>
       <p><b>الوزن الصحي بين</b>:</p>
       <svg id='indicator' width="100%" height="10">
@@ -62,7 +60,7 @@
           <path d="m 0,0 h 20 l-10,10" style="stroke:black;fill:black" visibility="hidden" />
         </g>
       </svg>
-      <div id="progress">
+      <div class="flex justify-center content-start rounded border border-black">
         <div id="bar" style="width:38.571429%;background-color: yellow;text-align:center">وزن ناقص</div>
         <div style="width:18.571429%;background-color: green;color:white;text-align:center;">وزن صحي</div>
         <div style="width:14.285714%;background-color:red;color:white;text-align:center;"">وزن زائد</div>
