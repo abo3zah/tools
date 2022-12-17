@@ -8,9 +8,9 @@
   <title>Country Information</title>
   <link rel="icon" href="icon.ico">
 
-  <link rel="stylesheet" href="css\variables.css">
-  <link rel="stylesheet" href="css\header.css">
-  <link rel="stylesheet" href="css\countryCode.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <link rel="stylesheet" href="css\header2.css">
+  <!-- <link rel="stylesheet" href="css\countryCode.css"> -->
   
   <script src='https://www.w3schools.com/lib/w3.js'></script>
   <script src="https://d3js.org/d3.v6.min.js" defer></script>
@@ -19,13 +19,13 @@
 
 <body>
 
-  <div class="page">
-    <div w3-include-html='header.htm'></div>
+  <div class="grid grid-rows-[auto_1fr_auto] w-full h-full">
+    <div w3-include-html='header2.htm'></div>
     
     <!-- Main -->
     <div>
-      <div id="main"></div>
-      <div class="dialog hidden"></div>
+      <div id="main" calss="w-full h-full grid grid-col-[1fr] items-center py-3 px-6"></div>
+      <div id="dialog" class="fixed border border-black top-[5%] left-[5%] bg-slate-100 w-[90%] h-[90%] grid grid-cols-2 justify-center items-stretch"></div>
     </div>
 
     <div w3-include-html='footer.htm'></div>
