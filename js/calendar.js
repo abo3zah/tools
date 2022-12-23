@@ -51,7 +51,7 @@ var replaceDigits = function (str) {
 
 const weekday = ["أ", "ث", "ث", "ر", "خ", "ج", "س"];
 const MonthName = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أوكتوبر", "نوفمبر", "ديسمبر"];
-const hColors = ['#32CD32', '#06b6d4', '#FFA500'];
+const hColors = ['#CD3245', '#6C32CD', '#32CDBA'];
 const map = [
     "&#1632;", "&#1633;", "&#1634;", "&#1635;", "&#1636;",
     "&#1637;", "&#1638;", "&#1639;", "&#1640;", "&#1641;"
@@ -96,14 +96,14 @@ function mainScript(){
                     return ' '
                 };
 
-                classes = 'relative text-sm pr-1 border border-black ';
+                classes = 'relative text-sm pr-1 border border-black rounded ';
 
                 
-                d.day() > 4 ? classes += "bg-gray-600 text-white " : classes += 'bg-slate-50 ';
+                d.day() > 4 ? classes += "" : classes += 'bg-slate-50 ';
                 d.day() == 0 ? classes += "sundays " : null;
                 d.date() == 1 ? classes += "startOfMonth " : null;
                 
-                d.format('iMM') == 9 ? classes += "bg-green-200 text-black font-bold " : null;
+                d.format('iMM') == 9 ? classes += "bg-[#93CD32] text-white font-bold " : null;
 
                 return classes;
             })
@@ -114,14 +114,26 @@ function mainScript(){
 
                 let styleString = "";
 
+                let styles = [];
+
                 for (let z = 0; z < vacationData.length; z++) {
 
                     if (d.isBetween(vacationData[z].start, moment(vacationData[z].end), undefined, '[]')) {
-                        styleString = vacationData[z].style;
+                        styles.push(vacationData[z].style);
                     }
                 }
 
-                d.isSame(moment(), 'day') ? styleString = "color:white; background-color:lightslategrey " : null;
+                d.isSame(moment(), 'day') ? styleString += "border: 3px solid red;" : null;
+
+                if (styles.length == 2){
+                    color1 = styles[0].split(":")[1];
+                    color2 = styles[1].split(":")[1];
+                    styleString += `background: linear-gradient(to right, ${color1}, ${color1} 50%, ${color2} 50%, ${color2} 100%); color:black;`;
+                }else{
+                    if (styles.length == 1){
+                        styleString += "color:black;" + styles[0];
+                    }
+                }
 
                 return styleString;
             })
@@ -166,7 +178,7 @@ function mainScript(){
     vacationDetails.push({
         'key': 'رمضان',
         'value': [{
-            style: 'background-color:rgb(187 247 208);font-weight: 700;',
+            style: 'background-color:#93CD32;font-weight: 700;color:white',
         }]
     })
 
