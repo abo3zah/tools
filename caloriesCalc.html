@@ -27,17 +27,15 @@
     <div class='grid grid-cols-1 justify-center content-start border border-black rounded bg-slate-200 p-2 m-6'>
       <div class='input-group'>
         <span>الوزن (كجم)</span>
-        <input tabindex="1" id='weight' type='number' name='weight' placeholder='الوزن (كجم)' min='30' value='70'
-          required>
+        <input tabindex="1" id='weight' type='number' name='weight' placeholder='الوزن (كجم)' min='30' value='70' pattern="[0-9]*" inputmode="decimal" required>
       </div>
       <div class='input-group'>
         <span>الطول (سم)</span>
-        <input tabindex="2" id='height' type='number' name='height' placeholder='الطول (سم)' min='0' value='170'
-          required>
+        <input tabindex="2" id='height' type='number' name='height' placeholder='الطول (سم)' min='0' value='170' pattern="[0-9]*" inputmode="decimal" required>
       </div>
       <div class='input-group'>
         <span>العمر</span>
-        <input tabindex="3" id='age' type='number' name='age' placeholder='العمر' min='5' value='30' required>
+        <input tabindex="3" id='age' type='number' name='age' placeholder='العمر' min='5' value='30' pattern="[0-9]*" inputmode="decimal" required>
       </div>
       <div class='input-group radio-group-box'>
         <span>الجنس</span>
