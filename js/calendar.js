@@ -59,7 +59,9 @@ const map = [
 
 function mainScript(){
 
-    if (document.getElementById("selectedYear").value < 1938 || document.getElementById("selectedYear").value > 2076){return null} 
+    if (document.getElementById("selectedYear").value < 1938 || document.getElementById("selectedYear").value > 2076){
+        document.querySelector("#selectedYear").value = moment().format("yyyy");
+    } 
     selectedYear = document.getElementById("selectedYear").value;
     var dates = generateYearStructure(selectedYear);
     var hYear = [];
@@ -192,5 +194,7 @@ function mainScript(){
         .attr('class', " flex-grow")
 
 }
+
+document.querySelector("#selectedYear").value = moment().format("yyyy");
 
 mainScript();
