@@ -174,7 +174,7 @@ function mainScript(){
             
     }
 
-    let str = '(' + replaceDigits(hYear.reduce((p, c) => p + " - " + c)) + ")";
+    let str = '(' + replaceDigits(hYear.reduce((p, c) => p + " - " + c)) + ") هـ";
     d3.select('#hijriYear').html(str);
 
     vacationDetails.push({
