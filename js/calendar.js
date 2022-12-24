@@ -49,6 +49,26 @@ var replaceDigits = function (str) {
     });
 }
 
+var translateText = (str) => {
+    str = str.includes(" ago") ? "كان قبل " + str.replace(" ago","") : str
+    str = str.replace("a mintue", "دقيقة")
+    str = str.replace("a month", "شهر")
+    str = str.replace("an hour", "ساعة")
+    str = str.replace("a day", "يوم")
+    str = str.replace("a year", "سنة")
+    str = str.replace("2 mintues", "دقيقتين")
+    str = str.replace("2 hours", "ساعتين")
+    str = str.replace("2 days", "يومين")
+    str = str.replace("2 months", "شهرين")
+    str = str.replace("2 years", "سنتين")
+    str = str.replace("days", "أيام")
+    str = str.replace("months", "أشهر")
+    str = str.replace("years", "سنوات")
+    str = str.replace("in", "سيكون خلال")
+    str = str.replace("a", "")
+    return str
+}
+
 const weekday = ["أ", "ث", "ث", "ر", "خ", "ج", "س"];
 const MonthName = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أوكتوبر", "نوفمبر", "ديسمبر"];
 const hColors = ['#CD3245', '#6C32CD', '#32CDBA'];
@@ -142,7 +162,7 @@ function mainScript(){
             .on('click', (click, d)=> {
                 
                 d3.select('#dialog').classed("hidden", false)
-                d3.select('#timeDifference').html(`${d.format("MMMM DD, yyyy")} is almost ${moment(d).fromNow()}`)
+                d3.select('#timeDifference').html(replaceDigits(`<span class="font-bold">${d.format("iYYYY/iM/iD")}</span>  ${translateText(moment(d).fromNow())}`))
 
                 setTimeout(()=>d3.select('#dialog').classed("hidden", true), 3000)
 
