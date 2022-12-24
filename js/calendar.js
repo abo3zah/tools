@@ -139,6 +139,15 @@ function mainScript(){
 
                 return styleString;
             })
+            .on('click', (click, d)=> {
+                
+                d3.select('#dialog').classed("hidden", false)
+                d3.select('#timeDifference').html(`${d.format("MMMM DD, yyyy")} is almost ${moment(d).fromNow()}`)
+
+                setTimeout(()=>d3.select('#dialog').classed("hidden", true), 3000)
+
+                return null
+            })
             .html((d) => {
                 if (typeof d !== 'object') {
                     return ''
@@ -194,6 +203,8 @@ function mainScript(){
         .attr('class', " flex-grow")
 
 }
+
+d3.select('#dialog').classed("hidden", true)
 
 document.querySelector("#selectedYear").value = moment().format("yyyy");
 

@@ -25,7 +25,7 @@
         <div w3-include-html='header2.htm'></div>
 
         <!-- Main -->
-        <div class="w-full h-full grid grid-col-[1fr] items-center py-3 px-6">
+        <div class="relative w-full h-full grid grid-col-[1fr] items-center py-3 px-6">
             
             <div class="text-center text-xl">
                 تقويم سنة 
@@ -169,6 +169,10 @@
                 </table>
 
                 <div id="legend" class="col-span-full w-full h-full flex justify-center items-center text-center py-1 flex-wrap gap-2"></div>
+            </div>
+
+            <div id="dialog" class="grid absolute top-3/6 justify-center items-center w-full">
+                <div id="timeDifference" class="bg-slate-100 font-bold border border-black text-black p-5 rounded"></div>
             </div>
         </div>
 
