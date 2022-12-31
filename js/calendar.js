@@ -61,6 +61,7 @@ var translateText = (str) => {
     str = str.replace("2 days", "يومين")
     str = str.replace("2 months", "شهرين")
     str = str.replace("2 years", "سنتين")
+    str = str.replace("hours", "ساعات")
     str = str.replace("days", "أيام")
     str = str.replace("months", "أشهر")
     str = str.replace("years", "سنوات")
