@@ -146,12 +146,17 @@ function mainScript(){
                     }
                 }
 
-                d.isSame(moment(), 'day') ? styleString += "border: 3px solid red;" : null;
+                // d.isSame(moment(), 'day') ? styleString += "border: 3px solid red;" : null;
 
                 if (styles.length == 2){
                     color1 = styles[0].split(":")[1];
                     color2 = styles[1].split(":")[1];
-                    styleString += `background: linear-gradient(to right, ${color1}, ${color1} 50%, ${color2} 50%, ${color2} 100%); color:black;`;
+                    styleString += `background: white;
+                    background: -moz-linear-gradient(90deg, ${color1} 0%, ${color1} 50%, ${color2} 50%, ${color2} 100%);
+                    background: -webkit-linear-gradient(90deg, ${color1} 0%, ${color1} 50%, ${color2} 50%, ${color2} 100%);
+                    background: linear-gradient(90deg, ${color1} 0%, ${color1} 50%, ${color2} 50%, ${color2} 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#13321c",GradientType=1);
+                    color:black`;
                 }else{
                     if (styles.length == 1){
                         styleString += "color:black;" + styles[0];
